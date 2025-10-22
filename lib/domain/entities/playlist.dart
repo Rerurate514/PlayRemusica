@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:playremusica/domain/entities/picture_image.dart';
 import 'package:uuid/uuid.dart';
 
 part 'playlist.freezed.dart';
@@ -9,6 +10,6 @@ sealed class PlayList with _$PlayList {
     required Uuid id,
     required String name,
     required List<Uuid> list,
-    String? picture,
+    required PictureImage picture,
   }) = _PlayList;
 }
