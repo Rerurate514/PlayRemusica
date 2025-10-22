@@ -7,13 +7,29 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
+  audioplayers: ^6.5.1
+  file_picker: ^10.3.3
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_riverpod: ^3.0.3
+  image_picker: ^1.2.0
+  matrix_gesture_detector: ^0.2.0-nullsafety.1
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  permission_handler: ^12.0.1
+  riverpod_annotation: ^3.0.3
+  youtube_explode_dart: ^2.5.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-
+  build_runner: ^2.7.1
+  freezed: ^3.2.3
+  riverpod_generator: ^3.0.3
+  riverpod_lint: ^3.0.3
+  flutter_lints: ^6.0.0
+  very_good_analysis: ^10.0.0
+  
 flutter:
   uses-material-design: true
