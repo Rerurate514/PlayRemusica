@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/domain/entities/music.dart';
 
 abstract class IAudioPlayerRepository {
@@ -8,5 +9,6 @@ abstract class IAudioPlayerRepository {
   void setVolume(int volume);
   void getCurrentSeconds();
   void getDurationSeconds();
+  void setReleaseMode(ReleaseMode releaseMode);
   void initCompletedListener(Function() onMusicCompleted);
 }
