@@ -13,4 +13,14 @@ sealed class PlayList with _$PlayList {
     required List<Music> list,
     required PictureImage picture,
   }) = _PlayList;
+
+  factory PlayList.createEmpty() {
+    return PlayList(
+      id: PlayListId(id: ""),
+      name: '',
+      list: [],
+      picture: PictureImage()
+    );
+  }
+
 }
