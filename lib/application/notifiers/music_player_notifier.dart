@@ -5,6 +5,7 @@ import 'package:playremusica/domain/repositories/audio_player_repository_interfa
 import 'package:playremusica/domain/services/player_domain_service.dart';
 import 'package:playremusica/domain/values/music_mode.dart';
 import 'package:playremusica/domain/values/transition.dart';
+import 'package:playremusica/infrastructure/repositories/audio_player_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'music_player_notifier.g.dart';
@@ -15,7 +16,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   @override
   MusicPlayerState build() {
-    //_audioRepo = ref.read(audioPlayerRepositoryProvider);
+    _audioRepo = ref.read(audioPlayerRepositoryProvider);
     return MusicPlayerState(
       isPlaying: false,
       pds: PlayerDomainService(playList: PlayList.createEmpty())
@@ -23,12 +24,12 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> loadInitialData(PlayList playList) async {
+    _audioRepo.initCompletedListener(_handlePlaybackCompletion);
     state = state.copyWith(pds: PlayerDomainService(playList: playList));
   }
 
   Future<void> play() async {
     state = state.copyWith(isPlaying: true);
-
     _audioRepo.start(state.pds.getCurrentMusicId());
   }
 
@@ -79,6 +80,6 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   void _handlePlaybackCompletion() {
-
+    
   }
 }
