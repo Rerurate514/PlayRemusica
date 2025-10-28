@@ -12,7 +12,7 @@ class Index {
     if(len <= _value) _value -= len;
   }
 
-  void dicrease(){
+  void decrease(){
     _value--;
     if(0 > _value) _value = len + _value;
   }

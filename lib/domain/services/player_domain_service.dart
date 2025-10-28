@@ -18,7 +18,7 @@ class PlayerDomainService {
   Music handleMusicTransition(Transition transition) {
     switch(transition){
       case Next(): _index.increase();
-      case Previous(): _index.dicrease();
+      case Previous(): _index.decrease();
       case Random(): _index.random();
     }
 
