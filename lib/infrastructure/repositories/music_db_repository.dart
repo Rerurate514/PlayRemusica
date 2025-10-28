@@ -9,6 +9,8 @@ import 'package:playremusica/infrastructure/database/app_database.dart';
 import 'package:playremusica/infrastructure/repositories/helpers/picture_binary_converter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'music_db_repository.g.dart';
+
 @riverpod
 IMusicDbRepository musicDbRepository (Ref ref) {
   return MusicDbRepositoryImpl(
