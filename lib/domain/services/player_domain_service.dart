@@ -39,7 +39,7 @@ class PlayerDomainService {
     return playList.list[_index.value];
   }
 
-  Music getCurrentMusicId(){
+  Music getCurrentMusic(){
     return playList.list[_index.value];
   }
 }

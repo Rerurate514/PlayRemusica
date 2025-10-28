@@ -30,7 +30,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   Future<void> play() async {
     state = state.copyWith(isPlaying: true);
-    _audioRepo.start(state.pds.getCurrentMusicId());
+    _audioRepo.start(state.pds.getCurrentMusic());
   }
 
   Future<void> pause() async {
