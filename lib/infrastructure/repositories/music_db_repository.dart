@@ -10,7 +10,7 @@ import 'package:playremusica/infrastructure/repositories/helpers/picture_binary_
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 @riverpod
-IMusicDbRepository musicFileRepository (Ref ref) {
+IMusicDbRepository musicDbRepository (Ref ref) {
   return MusicDbRepositoryImpl(
     db: ref.watch(appDatabaseProvider),
     pbc: ref.watch(pictureBinaryConverterProvider)
