@@ -6,5 +6,5 @@ class MusicTable extends Table {
   TextColumn get filePath => text().unique()();
   IntColumn get volume => integer().withDefault(const Constant(40))();
   TextColumn get lyrics => text()();
-  BlobColumn get picture => blob()();
+  BlobColumn get picture => blob().nullable()();
 }

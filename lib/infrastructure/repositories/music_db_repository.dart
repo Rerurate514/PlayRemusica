@@ -59,7 +59,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
         filePath: Value(music.path),
         volume: Value(music.musicSettings.volume),
         lyrics: Value(music.musicSettings.lyrics),
-        picture: Value(pictureBytes ?? Uint8List(0))
+        picture: Value(pictureBytes)
       ));
   }
 
@@ -78,7 +78,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
       MusicTableCompanion(
         volume: Value(settings.volume),
         lyrics: Value(settings.lyrics),
-        picture: Value(pictureBytes ?? Uint8List(0))
+        picture: Value(pictureBytes)
       )
     );
   }
@@ -91,7 +91,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
       musicSettings: MusicSettings(
         lyrics: data.lyrics, 
         picture: PictureImage(
-          imageProvider: pbc.convertBytesToImage(data.picture)
+          imageProvider: data.picture != null ? pbc.convertBytesToImage(data.picture!) : null
         )
       )
     );
