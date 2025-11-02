@@ -98,4 +98,24 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
       )
     );
   }
+  
+  @override
+  Future<List<Music>> readAllMusics() async {
+    final query = await db.select(db.musicTable).get();
+    final List<Music> musics = query.map((MusicTableData data) {
+      return Music(
+        id: MusicId(id: data.id), 
+        name: data.name, 
+        path: data.filePath, 
+        musicSettings: MusicSettings(
+          lyrics: data.lyrics, 
+          picture: PictureImage(
+            imageProvider: data.picture != null ? pbc.convertBytesToImage(data.picture!) : null
+          )
+        )
+      );
+    }).toList();
+
+    return musics;
+  }
 }
