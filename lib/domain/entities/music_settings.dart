@@ -11,7 +11,7 @@ sealed class MusicSettings with _$MusicSettings {
     required PictureImage picture,
   }) = _MusicSettings;
 
-  factory MusicSettings.createEmpty() {
+  factory MusicSettings.createDefault() {
     return MusicSettings(
       lyrics: "", 
       picture: PictureImage()
