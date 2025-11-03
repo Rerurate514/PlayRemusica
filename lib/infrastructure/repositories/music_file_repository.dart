@@ -8,12 +8,24 @@ import 'package:playremusica/domain/entities/music_settings.dart';
 import 'package:playremusica/domain/repositories/music_db_reposiyory_interface.dart';
 import 'package:playremusica/domain/repositories/music_file_repository_interface.dart';
 import 'package:playremusica/infrastructure/repositories/helpers/file_name_trimer.dart';
+import 'package:playremusica/infrastructure/repositories/music_db_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class MusicFileRepository implements IMusicFileRepository {
+part 'music_file_repository.g.dart';
+
+@riverpod
+IMusicFileRepository musicFileRepository(Ref ref) {
+  return MusicFileRepositoryImpl(
+    fnt: ref.watch(fileNameTrimerProvider),
+    mdr: ref.watch(musicDbRepositoryProvider)
+  );
+}
+
+class MusicFileRepositoryImpl implements IMusicFileRepository {
   final FileNameTrimer fnt;
   final IMusicDbRepository mdr;
 
-  MusicFileRepository({
+  MusicFileRepositoryImpl({
     required this.fnt,
     required this.mdr
   });
