@@ -23,8 +23,16 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   Widget build(BuildContext context) {
     final viewModel = ref.watch(splashPageViewModelProvider);
 
-    ref.listen(splashPageViewModelProvider, (p, n) {
-      n.whenData((_) => _navigateMainScreen);
+    // ref.listen<AsyncValue<void>>(splashPageViewModelProvider, (p, n) {
+    //   n.whenData((_) {
+    //     _navigateMainScreen();
+    //   });
+    // });
+
+    viewModel.whenData((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _navigateMainScreen();
+      });
     });
 
     return Scaffold(
