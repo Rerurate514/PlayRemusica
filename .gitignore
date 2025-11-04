@@ -46,3 +46,8 @@ app.*.map.json
 
 /**/*/*.g.dart
 /**/*/*.freezed.dart
+
+devtools_options.yaml
+
+generated_plugin_registrant.cc
+generated_plugins.cmake
