@@ -5,6 +5,8 @@ import 'package:playremusica/infrastructure/core/shared_prefs_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+part 'shared_prefs_repository.g.dart';
+
 @riverpod
 ISharedPrefsRepository sharedPrefsRepository (Ref ref) {
   return SharedPrefsRepositoryImpl(
