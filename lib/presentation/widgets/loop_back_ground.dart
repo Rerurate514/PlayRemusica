@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playremusica/core/settings/my_colors.dart';
 
 class LoopBackGround extends StatelessWidget {
   final Animation<Offset> gradationAnimation;
@@ -8,7 +9,7 @@ class LoopBackGround extends StatelessWidget {
   final bool isAnimation;
   final Offset? initialOffset;
 
-  const LoopBackGround({
+  LoopBackGround({
     super.key, 
     required this.gradationAnimation,
     required this.animationController,
@@ -18,8 +19,8 @@ class LoopBackGround extends StatelessWidget {
     this.initialOffset,
   });
 
-  final gradateBeginColor = const Color.fromARGB(255, 220, 40, 110);
-  final gradateEndColor = const Color.fromARGB(255, 0, 133, 255);
+  final gradateBeginColor = MyColors.red;
+  final gradateEndColor = MyColors.blue;
 
   @override
   Widget build(BuildContext context) {
