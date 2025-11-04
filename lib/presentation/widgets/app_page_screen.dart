@@ -45,7 +45,7 @@ class AppPageScreen extends HookWidget {
           BottomNavigationBarItem(
             icon: GradientIcon(
               icon: Icons.home, 
-              size: 16, 
+              size: 25, 
               gradient: MyColors.iconGradient,
             ), 
             label: "Home"
@@ -53,7 +53,7 @@ class AppPageScreen extends HookWidget {
           BottomNavigationBarItem(
             icon: GradientIcon(
               icon: Icons.list, 
-              size: 16, 
+              size: 25, 
               gradient: MyColors.iconGradient,
             ), 
             label: "List"
@@ -61,7 +61,7 @@ class AppPageScreen extends HookWidget {
           BottomNavigationBarItem(
             icon: GradientIcon(
               icon: Icons.play_arrow, 
-              size: 16, 
+              size: 25, 
               gradient: MyColors.iconGradient,
             ), 
             label: "Play"
@@ -69,7 +69,7 @@ class AppPageScreen extends HookWidget {
           BottomNavigationBarItem(
             icon: GradientIcon(
               icon: Icons.settings, 
-              size: 16, 
+              size: 25, 
               gradient: MyColors.iconGradient,
             ), 
             label: "Settings"
