@@ -46,7 +46,7 @@ class MusicFileRepositoryImpl implements IMusicFileRepository {
   }
 
   @override
-  Future<Result<List<Music>>> scanMusicFiles(String directoryPath) async {
+  Future<Result<List<Music>>> scanMusicFiles() async {
     final list = await _fetchFileFromDownloadDir();
     final audioList = _filterAudioFiles(list);
     final pathLists = fnt.convertFileNameToPathString(audioList).toSet();
