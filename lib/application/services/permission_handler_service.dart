@@ -3,18 +3,23 @@ import 'package:playremusica/domain/repositories/permission_handler_repository_i
 import 'package:playremusica/infrastructure/repositories/permission_handler_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'permission_handler_notifier.g.dart';
+part 'permission_handler_service.g.dart';
 
 @riverpod
-class PermissionHandlerNotifier extends _$PermissionHandlerNotifier {
-  late final IPermissionHandlerRepository _phr;
-  
-  @override
-  void build() {
-    _phr = ref.read(permissionHandlerRepositoryProvider);
-  }
+PermissionHandlerService permissionHandlerService(Ref ref) {
+  return PermissionHandlerService(
+    phr: ref.read(permissionHandlerRepositoryProvider)
+  );
+}
+
+class PermissionHandlerService {
+  late final IPermissionHandlerRepository phr;
+
+  PermissionHandlerService({
+    required this.phr
+  });
 
   Future<Map<Permission, PermissionStatus>> request(List<Permission> permissions) async {
-    return await _phr.request(permissions);
+    return await phr.request(permissions);
   }
 }

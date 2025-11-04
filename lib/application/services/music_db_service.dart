@@ -5,34 +5,39 @@ import 'package:playremusica/domain/repositories/music_db_reposiyory_interface.d
 import 'package:playremusica/infrastructure/repositories/music_db_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'music_db_notifier.g.dart';
+part 'music_db_service.g.dart';
 
 @riverpod
-class MusicDbNotifier extends _$MusicDbNotifier {
-  late final IMusicDbRepository _mdr;
+MusicDbService musicDbService(Ref ref) {
+  return MusicDbService(
+    mdr: ref.watch(musicDbRepositoryProvider)
+  );
+}
 
-  @override
-  void build(){
-    _mdr = ref.read(musicDbRepositoryProvider);
-  }
+class MusicDbService {
+  late final IMusicDbRepository mdr;
+
+  MusicDbService({
+    required this.mdr
+  });
 
   Future<void> deleteMusic(MusicId id) async {
-    _mdr.deleteMusic(id);
+    mdr.deleteMusic(id);
   }
 
   Future<Music> readMusicById(MusicId id) async {
-    return _mdr.readMusicById(id);
+    return mdr.readMusicById(id);
   }
 
   Future<void> saveMusic(Music music) async {
-    _mdr.saveMusic(music);
+    mdr.saveMusic(music);
   }
 
   Future<void> updateMusicSettings(MusicId id, MusicSettings settings) async {
-    _mdr.updateMusicSettings(id, settings);
+    mdr.updateMusicSettings(id, settings);
   }
 
   Future<List<Music>> readAllMusics() async {
-    return _mdr.readAllMusics();
+    return mdr.readAllMusics();
   }
 }
