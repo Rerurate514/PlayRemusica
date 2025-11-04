@@ -22,7 +22,6 @@ class GradientIcon extends StatelessWidget {
       child: Icon(
         icon,
         size: size,
-        color: Colors.white,
       ),
     );
   }
