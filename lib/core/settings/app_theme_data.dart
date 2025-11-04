@@ -5,7 +5,7 @@ final appThemeData = ThemeData.dark().copyWith(
     textTheme: ThemeData.dark().textTheme.copyWith(),
     bottomNavigationBarTheme: ThemeData.dark().bottomNavigationBarTheme.copyWith(
       selectedItemColor: Colors.white, 
-      unselectedItemColor: Colors.green,
+      unselectedItemColor: Colors.grey,
       selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.bold
       ),
