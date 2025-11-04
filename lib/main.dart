@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:playremusica/core/settings/app_theme_data.dart';
+import 'package:playremusica/presentation/widgets/app_page_screen.dart';
 import 'package:playremusica/presentation/widgets/gradient_screen.dart';
 
 void main() {
@@ -14,11 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: appThemeData,
-      home: Scaffold(
-        body: Center(
-          child: GradientScreen(),
-        ),
-      ),
+      home: AppPageScreen(),
     );
   }
 }
