@@ -54,9 +54,11 @@ class AppPageScreen extends HookWidget {
     ]);
 
     return Scaffold(
-      body: IndexedStack(
-        index: currentPageIndex.value,
-        children: pages,
+      body: SafeArea(
+        child: IndexedStack(
+          index: currentPageIndex.value,
+          children: pages,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
