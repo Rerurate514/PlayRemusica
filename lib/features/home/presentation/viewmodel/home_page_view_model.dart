@@ -11,7 +11,7 @@ class HomePageViewModel extends _$HomePageViewModel {
   late final AppStartUpService asus;
 
   @override
-  HomePageViewState build() {
+  Future<HomePageViewState> build() async {
     mds = ref.watch(musicDbServiceProvider);
     asus = ref.watch(appStartUpServiceProvider);
 
@@ -19,7 +19,12 @@ class HomePageViewModel extends _$HomePageViewModel {
   }
 
   void initialize() async {
+    state = AsyncLoading();
     final musics = await mds.readAllMusics();
-    state = state.copyWith(musics: musics);
+    try {
+      state = AsyncData(HomePageViewState(musics: musics));
+    } catch(e) {
+      rethrow;
+    }
   }
 }
