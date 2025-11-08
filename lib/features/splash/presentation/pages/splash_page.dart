@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:playremusica/features/splash/presentation/state/splash_page_view_model.dart';
+import 'package:playremusica/features/splash/presentation/viewmodel/splash_page_view_model.dart';
 import 'package:playremusica/presentation/widgets/app_page_screen.dart';
 
 class SplashPage extends ConsumerStatefulWidget { 
