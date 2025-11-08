@@ -15,16 +15,7 @@ class HomePageViewModel extends _$HomePageViewModel {
     mds = ref.watch(musicDbServiceProvider);
     asus = ref.watch(appStartUpServiceProvider);
 
-    return HomePageViewState.createEmpty();
-  }
-
-  void initialize() async {
-    state = AsyncLoading();
     final musics = await mds.readAllMusics();
-    try {
-      state = AsyncData(HomePageViewState(musics: musics));
-    } catch(e) {
-      rethrow;
-    }
+    return HomePageViewState(musics: musics);
   }
 }
