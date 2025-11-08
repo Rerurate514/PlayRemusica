@@ -19,7 +19,9 @@ part 'app_database.g.dart';
   ]
 )
 class AppDatabase extends _$AppDatabase {
-  AppDatabase(): super(_openConnection());
+  static AppDatabase? _instance;
+
+  AppDatabase._(): super(_openConnection());
 
   @override
   int get schemaVersion => 1;
@@ -30,6 +32,11 @@ class AppDatabase extends _$AppDatabase {
       return m.createAll();
     }
   );
+
+  factory AppDatabase() {
+    _instance ??= AppDatabase._();
+    return _instance!;
+  }
 }
 
 LazyDatabase _openConnection() {
