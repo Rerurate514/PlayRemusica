@@ -13,28 +13,49 @@ class SplashPage extends ConsumerStatefulWidget {
 }
 
 class _SplashPageState extends ConsumerState<SplashPage> {
+  bool _listenerAdded = false;
+
   void _navigateMainScreen() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => AppPageScreen(),)
     );
   }
 
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   ref.listenManual(splashPageViewModelProvider, (_, n) {
+  //     n.whenData((_) {
+  //       _navigateMainScreen();
+  //     });
+  //   }, fireImmediately: true);
+  // }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_listenerAdded) {
+      _listenerAdded = true;
+      
+      ref.listenManual(splashPageViewModelProvider, (_, n) {
+        n.whenData((_) {
+          _navigateMainScreen();
+        });
+      });
+    }
+    
+    final prov = ref.watch(splashPageViewModelProvider.notifier);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      prov.initialize();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel = ref.watch(splashPageViewModelProvider);
-
-    // ref.listen<AsyncValue<void>>(splashPageViewModelProvider, (p, n) {
-    //   n.whenData((_) {
-    //     _navigateMainScreen();
-    //   });
-    // });
-
-    viewModel.whenData((_) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _navigateMainScreen();
-      });
-    });
-
+      
     return Scaffold(
       body: Center(
         child: viewModel.when(

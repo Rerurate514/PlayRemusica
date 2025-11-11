@@ -1,3 +1,4 @@
+import 'package:playremusica/core/result.dart';
 import 'package:playremusica/core/settings/permissions.dart';
 import 'package:playremusica/domain/repositories/music_db_reposiyory_interface.dart';
 import 'package:playremusica/domain/repositories/music_file_repository_interface.dart';
@@ -29,17 +30,19 @@ class AppStartUpService {
     required this.phr
   });
 
-  Future<void> initialize() async {
-    phr.request(permissions);
+  Future<Result<void>> initialize() async {
+    await phr.request(permissions);
 
     final scanedResult = await mfr.scanMusicFiles();
-    if(!scanedResult.isSucceeded) return;
+    if(!scanedResult.isSucceeded) return Result(isSucceeded: false);
 
     final musicsToSave = scanedResult.value!;
-    if(musicsToSave.isEmpty) return;
+    if(musicsToSave.isEmpty) return Result(isSucceeded: false);
 
     for(final music in musicsToSave) {
       await mdr.saveMusic(music);
     }
+
+    return Result(isSucceeded: true);
   }
 }

@@ -5,12 +5,17 @@ part 'splash_page_view_model.g.dart';
 
 @riverpod
 class SplashPageViewModel extends _$SplashPageViewModel {
-  late final AppStartUpService _asus;
+  late final AppStartUpService asus;
 
   @override
   Future<void> build() async {
-    _asus = ref.watch(appStartUpServiceProvider);
-    await _asus.initialize();
+    asus = ref.watch(appStartUpServiceProvider);
+  }
+
+  Future<void> initialize() async {
+    state = AsyncLoading();
+    await asus.initialize();
+    state = AsyncData(null);
   }
 
   Future<void> restartAppInitialization() async {
