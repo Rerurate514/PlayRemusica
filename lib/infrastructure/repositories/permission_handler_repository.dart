@@ -15,14 +15,18 @@ class PermissionHandlerRepositoryImpl implements IPermissionHandlerRepository {
   Future<Map<Permission, PermissionStatus>> request(List<Permission> permissions) async {
     final Map<Permission, PermissionStatus> statuses = {};
 
-    for (final permisson in permissions) {
-      final status = await permisson.request();
+    try {
+      for (final permisson in permissions) {
+        final status = await permisson.request();
 
-      if(!status.isGranted){
-        throw PermissionHandleException(permisson);
+        if(!status.isGranted){
+          throw PermissionHandleException(permisson);
+        }
+
+        statuses.addAll({permisson: status});
       }
-
-      statuses.addAll({permisson: status});
+    } catch(e) {
+      rethrow;
     }
 
     return statuses;
