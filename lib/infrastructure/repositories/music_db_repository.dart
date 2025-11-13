@@ -87,7 +87,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
 
   Music _toDomain(MusicTableData data){
     return Music(
-      id: MusicId(id: data.id), 
+      id: MusicId(value: data.id), 
       name: data.name, 
       path: data.filePath, 
       musicSettings: MusicSettings(
@@ -104,7 +104,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
     final query = await db.select(db.musicTable).get();
     final List<Music> musics = query.map((MusicTableData data) {
       return Music(
-        id: MusicId(id: data.id), 
+        id: MusicId(value: data.id), 
         name: data.name, 
         path: data.filePath, 
         musicSettings: MusicSettings(

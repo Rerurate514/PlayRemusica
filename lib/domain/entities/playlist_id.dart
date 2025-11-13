@@ -6,12 +6,12 @@ part 'playlist_id.freezed.dart';
 @freezed
 sealed class PlayListId with _$PlayListId {
   const factory PlayListId({
-    required String id
+    required String value
   }) = _PlayListId;
 
     factory PlayListId.fromInputName(String inputName) {
     const uuid = Uuid();
     final uniqueId = uuid.v5(Namespace.url.value, inputName);
-    return PlayListId(id: uniqueId);
+    return PlayListId(value: uniqueId);
   }
 }

@@ -16,7 +16,7 @@ sealed class PlayList with _$PlayList {
 
   factory PlayList.createEmpty() {
     return PlayList(
-      id: PlayListId(id: ""),
+      id: PlayListId(value: ""),
       name: '',
       list: [],
       picture: PictureImage()

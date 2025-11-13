@@ -91,7 +91,7 @@ class PlayListDbRepositoryImpl implements IPlayListDbRepository {
       
       final List<Music> musicList = musicDataList.map((data) {
         return Music(
-          id: MusicId(id: data.id), 
+          id: MusicId(value: data.id), 
           name: data.name, 
           path: data.filePath, 
           musicSettings: MusicSettings(
@@ -104,7 +104,7 @@ class PlayListDbRepositoryImpl implements IPlayListDbRepository {
       }).toList();
       
       return PlayList(
-        id: PlayListId(id: data.id),
+        id: PlayListId(value: data.id),
         name: data.name,
         list: musicList,
         picture: PictureImage(
