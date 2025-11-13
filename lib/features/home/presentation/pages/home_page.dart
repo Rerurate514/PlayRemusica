@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/features/home/presentation/viewmodel/home_page_view_model.dart';
+import 'package:playremusica/presentation/widgets/music_list_view.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -13,18 +14,8 @@ class HomePage extends HookConsumerWidget {
       body: Center(
         child: prov.when(
           data: (state) {
-            return ReorderableListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                final name = state.musics[index].name;
-                return ListTile(
-                  key: Key(name),
-                  title: Text(name),
-                );
-              }, 
-              itemCount: state.musics.length, 
-              onReorder: (oldIndex, newIndex) {
-
-              }
+            return MusicListView(
+              musics: state.musics
             );
           }, 
           error: (e, o) {
