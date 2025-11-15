@@ -11,7 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'music_player_notifier.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   late final IAudioPlayerRepository apr;
 
