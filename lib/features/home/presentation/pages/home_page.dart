@@ -15,7 +15,10 @@ class HomePage extends HookConsumerWidget {
         child: prov.when(
           data: (state) {
             return MusicListView(
-              musics: state.musics
+              musics: state.musics,
+              onTappedMusic: (int index, _) {
+                viewmodel.onTappedMusic(index);
+              },
             );
           }, 
           error: (e, o) {

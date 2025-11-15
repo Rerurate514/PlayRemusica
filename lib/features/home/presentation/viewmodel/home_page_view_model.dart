@@ -1,5 +1,6 @@
 import 'package:playremusica/application/notifiers/music_player_notifier.dart';
 import 'package:playremusica/application/services/music_db_service.dart';
+import 'package:playremusica/domain/entities/playlist.dart';
 import 'package:playremusica/features/home/presentation/state/home_page_view_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,10 +17,13 @@ class HomePageViewModel extends _$HomePageViewModel {
     mpn = ref.watch(musicPlayerProvider.notifier);
 
     final musics = await mds.readAllMusics();
+    final playList = PlayList.createMainList(musics);
+    mpn.loadInitialData(playList);
+    
     return HomePageViewState(musics: musics);
   }
   
-  Future<void> onTappedMusic() async {
-    mpn.play();
+  Future<void> onTappedMusic(int index) async {
+    mpn.playAtIndex(index);
   }
 }

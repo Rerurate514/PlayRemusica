@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 
 class GlassFilterCard extends StatelessWidget {
   final Widget child;
+  final Function onTap;
   
   const GlassFilterCard({
     super.key,
-    required this.child
+    required this.child,
+    this.onTap = _voidCallback
   });
+
+  static void _voidCallback() {}
 
   @override
   Widget build(BuildContext context) {

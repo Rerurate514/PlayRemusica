@@ -5,12 +5,16 @@ import 'package:playremusica/domain/entities/music.dart';
 import 'package:playremusica/features/home/presentation/widgets/list_view_music_picture.dart';
 import 'package:playremusica/presentation/widgets/glass_filter_card.dart';
 import 'package:playremusica/presentation/widgets/gradient_icon.dart';
+import 'package:playremusica/presentation/widgets/ink_card.dart';
 
 class MusicListView extends ConsumerStatefulWidget {
   final List<Music> musics;
+  final void Function(int, Music) onTappedMusic;
+
   const MusicListView({
     super.key,
-    required this.musics
+    required this.musics,
+    required this.onTappedMusic
   });
 
   @override
@@ -27,23 +31,25 @@ class _MusicListViewState extends ConsumerState<MusicListView> {
         return Padding(
           key: ValueKey(music.name),
           padding: const EdgeInsets.all(8),
-          child: GlassFilterCard(
-            child: ListTile(
-              leading: ListViewMusicPicture(pictureImage: music.musicSettings.picture),
-              title: Text(
-                music.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold
+          child: InkCard(
+            onTap: () => widget.onTappedMusic(index, music), 
+            child: GlassFilterCard(
+              child: ListTile(
+                leading: ListViewMusicPicture(pictureImage: music.musicSettings.picture),
+                title: Text(
+                  music.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                trailing: GradientIcon(
+                  icon: Icons.reorder, 
+                  size: 50, 
+                  gradient: MyColors.iconGradient
                 ),
               ),
-              trailing: GradientIcon(
-                icon: Icons.reorder, 
-                size: 50, 
-                gradient: MyColors.iconGradient
-              ),
             ),
-            
-          ),
+          )
         );
       }, 
       itemCount: widget.musics.length, 
