@@ -24,6 +24,6 @@ class HomePageViewModel extends _$HomePageViewModel {
   }
   
   Future<void> onTappedMusic(int index) async {
-    mpn.playAtIndex(index);
+    await mpn.playAtIndex(index);
   }
 }

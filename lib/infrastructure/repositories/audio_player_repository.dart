@@ -76,6 +76,7 @@ class AudioPlayerRepositoryImpl implements IAudioPlayerRepository {
   @override
   Future<void> start(Music music) async {
     try {
+      await audioPlayer.stop();
       await audioPlayer.play(DeviceFileSource(music.path));
     } catch(e) {
       rethrow;
