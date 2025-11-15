@@ -15,6 +15,10 @@ class PlayerDomainService {
   MusicMode _musicMode = Normal();
   MusicMode get musicMode => _musicMode;
 
+  void setPlayListIndex(int index) {
+    _index.setIndex(index);
+  } 
+
   Music handleMusicTransition(Transition transition) {
     switch(transition){
       case Next(): _index.increase();

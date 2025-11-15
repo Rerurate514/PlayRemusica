@@ -33,6 +33,11 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     apr.start(state.pds.getCurrentMusic());
   }
 
+  Future<void> playAtIndex(int index) async {
+    state.pds.setPlayListIndex(index);
+    apr.start(state.pds.getCurrentMusic());
+  }
+
   Future<void> pause() async {
     state = state.copyWith(isPlaying: false);
     apr.pause();
