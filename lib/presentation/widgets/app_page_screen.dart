@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:playremusica/core/settings/my_colors.dart';
 import 'package:playremusica/features/home/presentation/pages/home_page.dart';
+import 'package:playremusica/features/player/presentation/pages/play_page.dart';
 import 'package:playremusica/presentation/widgets/gradient_icon.dart';
 
 class AppPageScreen extends HookWidget {
@@ -14,7 +15,7 @@ class AppPageScreen extends HookWidget {
     final pages = useMemoized(() => const [
       HomePage(),
       HomePage(),
-      HomePage(),
+      PlayPage(),
       HomePage(),
     ]);
 
