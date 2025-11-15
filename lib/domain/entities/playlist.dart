@@ -23,4 +23,12 @@ sealed class PlayList with _$PlayList {
     );
   }
 
+  factory PlayList.createMainList(List<Music> musics) {
+    return PlayList(
+      id: PlayListId(value: "in-main-list"), 
+      name: "", 
+      list: musics, 
+      picture: PictureImage()
+    );
+  }
 }
