@@ -33,7 +33,7 @@ class PlayListDbRepositoryImpl implements IPlayListDbRepository {
   @override
   Future<void> deletePlayList(PlayListId id) async {
     final deleteQuery = db.delete(db.playListTable)
-    ..where((tbl) => tbl.id.equals(id.id));
+    ..where((tbl) => tbl.id.equals(id.value));
 
     await deleteQuery.go();
   }
@@ -48,7 +48,7 @@ class PlayListDbRepositoryImpl implements IPlayListDbRepository {
 
     db.into(db.playListTable)
       .insert(PlayListTableCompanion(
-        id: Value(playlist.id.id),
+        id: Value(playlist.id.value),
         name: Value(playlist.name),
         picture: Value(pictureBytes)
       ));
@@ -125,7 +125,7 @@ class PlayListDbRepositoryImpl implements IPlayListDbRepository {
     : null;
 
     final query = db.update(db.playListTable)
-      ..where((tbl) => tbl.id.equals(id.id));
+      ..where((tbl) => tbl.id.equals(id.value));
 
     await query.write(
       PlayListTableCompanion(

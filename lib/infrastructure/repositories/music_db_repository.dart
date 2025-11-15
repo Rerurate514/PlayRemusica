@@ -31,7 +31,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
   @override
   Future<void> deleteMusic(MusicId id) async {
     final deleteQuery = db.delete(db.musicTable)
-      ..where((tbl) => tbl.id.equals(id.id));
+      ..where((tbl) => tbl.id.equals(id.value));
 
     await deleteQuery.go();
   }
@@ -39,7 +39,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
   @override
   Future<Music> readMusicById(MusicId id) async {
     final query = db.select(db.musicTable)
-      ..where((tbl) => tbl.id.equals(id.id));
+      ..where((tbl) => tbl.id.equals(id.value));
 
     final MusicTableData data = await query.getSingle();
 
@@ -56,7 +56,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
     
     db.into(db.musicTable)
       .insert(MusicTableCompanion(
-        id: Value(music.id.id),
+        id: Value(music.id.value),
         name: Value(music.name),
         filePath: Value(music.path),
         volume: Value(music.musicSettings.volume),
@@ -74,7 +74,7 @@ class MusicDbRepositoryImpl implements IMusicDbRepository {
     : null;
 
     final query = db.update(db.musicTable)
-      ..where((tbl) => tbl.id.equals(id.id));
+      ..where((tbl) => tbl.id.equals(id.value));
 
     await query.write(
       MusicTableCompanion(
