@@ -12,11 +12,11 @@ part 'music_player_notifier.g.dart';
 
 @riverpod
 class MusicPlayerNotifier extends _$MusicPlayerNotifier {
-  late final IAudioPlayerRepository _audioRepo;
+  late final IAudioPlayerRepository apr;
 
   @override
   MusicPlayerState build() {
-    _audioRepo = ref.read(audioPlayerRepositoryProvider);
+    apr = ref.read(audioPlayerRepositoryProvider);
     return MusicPlayerState(
       isPlaying: false,
       pds: PlayerDomainService(playList: PlayList.createEmpty())
@@ -24,27 +24,27 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> loadInitialData(PlayList playList) async {
-    _audioRepo.initCompletedListener(_handlePlaybackCompletion);
+    apr.initCompletedListener(_handlePlaybackCompletion);
     state = state.copyWith(pds: PlayerDomainService(playList: playList));
   }
 
   Future<void> play() async {
     state = state.copyWith(isPlaying: true);
-    _audioRepo.start(state.pds.getCurrentMusic());
+    apr.start(state.pds.getCurrentMusic());
   }
 
   Future<void> pause() async {
     state = state.copyWith(isPlaying: false);
-    _audioRepo.pause();
+    apr.pause();
   }
 
   Future<void> resume() async {
     state = state.copyWith(isPlaying: true);
-    _audioRepo.resume();
+    apr.resume();
   }
 
   Future<void> seek(int seconds) async {
-    _audioRepo.seek(seconds);
+    apr.seek(seconds);
   }
 
   Future<void> setPlayList(PlayList newPlayList) async {
@@ -69,14 +69,14 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   Future<void> toggleMusicMode() async {
     final musicMode = state.pds.musicMode;
     switch(musicMode) {
-      case Normal(): _audioRepo.setReleaseMode(ReleaseMode.loop);
-      case Loop(): _audioRepo.setReleaseMode(ReleaseMode.release);
-      case Shuffle(): _audioRepo.setReleaseMode(ReleaseMode.release);
+      case Normal(): apr.setReleaseMode(ReleaseMode.loop);
+      case Loop(): apr.setReleaseMode(ReleaseMode.release);
+      case Shuffle(): apr.setReleaseMode(ReleaseMode.release);
     }
   }
 
   Future<void> setVolume(double volume) async {
-    _audioRepo.setVolume(volume);
+    apr.setVolume(volume);
   }
 
   void _handlePlaybackCompletion() {
