@@ -29,7 +29,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     state = state.copyWith(pds: PlayerDomainService(playList: playList));
   }
 
-  Music getCurrentMusic() {
+  Music? getCurrentMusic() {
     return state.pds.getCurrentMusic();
   }
 
@@ -39,12 +39,16 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   Future<void> play() async {
     state = state.copyWith(isPlaying: true);
-    await apr.start(state.pds.getCurrentMusic());
+    final music = state.pds.getCurrentMusic();
+    if(music == null) return;
+    await apr.start(music);
   }
 
   Future<void> playAtIndex(int index) async {
     state.pds.setPlayListIndex(index);
-    await apr.start(state.pds.getCurrentMusic());
+    final music = state.pds.getCurrentMusic();
+    if(music == null) return;
+    await apr.start(music);
   }
 
   Future<void> pause() async {

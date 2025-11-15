@@ -43,7 +43,8 @@ class PlayerDomainService {
     return playList.list[_index.value];
   }
 
-  Music getCurrentMusic(){
+  Music? getCurrentMusic(){
+    if(playList.list.isEmpty) return null;
     return playList.list[_index.value];
   }
 }
