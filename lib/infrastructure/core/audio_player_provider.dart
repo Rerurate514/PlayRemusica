@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'audio_player_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 AudioPlayer audioPlayer (Ref ref) {
   final audioPlayer = AudioPlayer();
 
