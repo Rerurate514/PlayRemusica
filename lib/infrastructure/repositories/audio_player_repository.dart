@@ -42,41 +42,41 @@ class AudioPlayerRepositoryImpl implements IAudioPlayerRepository {
   }
 
   @override
-  void initCompletedListener(Function() onMusicCompleted) {
+  Future<void> initCompletedListener(Function() onMusicCompleted) async {
     audioPlayer.onPlayerComplete.listen((event) {
       onMusicCompleted();
     });
   }
 
   @override
-  void pause() {
-    audioPlayer.pause();
+  Future<void> pause() async {
+    await audioPlayer.pause();
   }
 
   @override
-  void resume() {
-    audioPlayer.resume();
+  Future<void> resume() async {
+    await audioPlayer.resume();
   }
 
   @override
-  void seek(int seconds) {
-    audioPlayer.seek(Duration(seconds: seconds));
+  Future<void> seek(int seconds) async {
+    await audioPlayer.seek(Duration(seconds: seconds));
   }
 
   @override
-  void setReleaseMode(ReleaseMode releaseMode) {
-    audioPlayer.setReleaseMode(releaseMode);
+  Future<void> setReleaseMode(ReleaseMode releaseMode) async {
+    await audioPlayer.setReleaseMode(releaseMode);
   }
 
   @override
-  void setVolume(double volume) {
-    audioPlayer.setVolume(volume);
+  Future<void> setVolume(double volume) async {
+    await audioPlayer.setVolume(volume);
   }
 
   @override
-  void start(Music music) {
+  Future<void> start(Music music) async {
     try {
-      audioPlayer.play(DeviceFileSource(music.path));
+      await audioPlayer.play(DeviceFileSource(music.path));
     } catch(e) {
       rethrow;
     }

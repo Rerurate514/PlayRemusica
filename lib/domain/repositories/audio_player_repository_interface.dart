@@ -2,13 +2,13 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/domain/entities/music.dart';
 
 abstract class IAudioPlayerRepository {
-  void start(Music music);
-  void pause();
-  void resume();
-  void seek(int seconds);
-  void setVolume(double volume);
+  Future<void> start(Music music);
+  Future<void> pause();
+  Future<void> resume();
+  Future<void> seek(int seconds);
+  Future<void> setVolume(double volume);
   double getCurrentSeconds();
   double getDurationSeconds();
-  void setReleaseMode(ReleaseMode releaseMode);
-  void initCompletedListener(Function() onMusicCompleted);
+  Future<void> setReleaseMode(ReleaseMode releaseMode);
+  Future<void> initCompletedListener(Function() onMusicCompleted);
 }

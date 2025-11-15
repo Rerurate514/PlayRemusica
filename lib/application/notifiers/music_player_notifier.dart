@@ -30,26 +30,26 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   Future<void> play() async {
     state = state.copyWith(isPlaying: true);
-    apr.start(state.pds.getCurrentMusic());
+    await apr.start(state.pds.getCurrentMusic());
   }
 
   Future<void> playAtIndex(int index) async {
     state.pds.setPlayListIndex(index);
-    apr.start(state.pds.getCurrentMusic());
+    await apr.start(state.pds.getCurrentMusic());
   }
 
   Future<void> pause() async {
     state = state.copyWith(isPlaying: false);
-    apr.pause();
+    await apr.pause();
   }
 
   Future<void> resume() async {
     state = state.copyWith(isPlaying: true);
-    apr.resume();
+    await apr.resume();
   }
 
   Future<void> seek(int seconds) async {
-    apr.seek(seconds);
+    await apr.seek(seconds);
   }
 
   Future<void> setPlayList(PlayList newPlayList) async {
@@ -58,17 +58,17 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   Future<void> moveNext() async {
     state.pds.handleMusicTransition(Next());
-    play();
+    await play();
   }
 
   Future<void> movePrevious() async {
     state.pds.handleMusicTransition(Previous());
-    play();
+    await play();
   }
 
   Future<void> moveRandom() async {
     state.pds.handleMusicTransition(Random());
-    play();
+    await play();
   }
 
   Future<void> toggleMusicMode() async {
@@ -81,7 +81,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> setVolume(double volume) async {
-    apr.setVolume(volume);
+    await apr.setVolume(volume);
   }
 
   void _handlePlaybackCompletion() {
