@@ -11,6 +11,7 @@ class AppPageScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final currentPageIndex = useState(0);
+    final pageController = usePageController();
 
     final pages = useMemoized(() => const [
       HomePage(),
@@ -54,10 +55,23 @@ class AppPageScreen extends HookWidget {
       ),
     ]);
 
+    useEffect(() {
+      void onPageChanged() {
+        int page = pageController.page?.round() ?? 0;
+        if (page != currentPageIndex.value) {
+          currentPageIndex.value = page;
+        }
+      }
+
+      pageController.addListener(onPageChanged);
+      return () => pageController.removeListener(onPageChanged);
+    }, [pageController]);
+
     return Scaffold(
       body: SafeArea(
-        child: IndexedStack(
-          index: currentPageIndex.value,
+        child: PageView(
+          controller: pageController,
+          physics: NeverScrollableScrollPhysics(),
           children: pages,
         ),
       ),
@@ -65,7 +79,9 @@ class AppPageScreen extends HookWidget {
         type: BottomNavigationBarType.fixed,
         items: bottomNavItems,
         currentIndex: currentPageIndex.value,
-        onTap: (index) => currentPageIndex.value = index,
+        onTap: (index) {
+          pageController.jumpToPage(index);
+        },
       ),
     );
   }
