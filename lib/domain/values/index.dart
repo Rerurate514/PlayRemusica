@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:playremusica/core/exception/out_bounds_index_exception.dart';
+
 class Index {
   final int len;
   int _value = 0;
@@ -22,6 +24,7 @@ class Index {
   }
 
   void setIndex(int index){
+    if(0 > index || index >= len) throw OutBoundsIndexException(index, len);
     _value = index;
   }
 }
