@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/application/state/music_player_state.dart';
+import 'package:playremusica/domain/entities/music.dart';
 import 'package:playremusica/domain/entities/playlist.dart';
 import 'package:playremusica/domain/repositories/audio_player_repository_interface.dart';
 import 'package:playremusica/domain/services/player_domain_service.dart';
@@ -26,6 +27,14 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   Future<void> loadInitialData(PlayList playList) async {
     apr.initCompletedListener(_handlePlaybackCompletion);
     state = state.copyWith(pds: PlayerDomainService(playList: playList));
+  }
+
+  Music getCurrentMusic() {
+    return state.pds.getCurrentMusic();
+  }
+
+  PlayList getCurrentPlayList() {
+    return state.pds.playList;
   }
 
   Future<void> play() async {
