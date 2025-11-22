@@ -1,12 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:playremusica/domain/entities/music.dart';
 
 part 'play_page_view_state.freezed.dart';
 
 @freezed
 sealed class PlayPageViewState with _$PlayPageViewState {
-  const factory PlayPageViewState() = _PlayPageViewState;
+  const factory PlayPageViewState({
+    required Music? currentMusic,
+    required String currentPlayListName
+  }) = _PlayPageViewState;
 
   factory PlayPageViewState.createEmpty(){
-    return PlayPageViewState();
+    return PlayPageViewState(
+      currentMusic: null,
+      currentPlayListName: ""
+    );
   }
 }
