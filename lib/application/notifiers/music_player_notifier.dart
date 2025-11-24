@@ -18,6 +18,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   @override
   MusicPlayerState build() {
     apr = ref.read(audioPlayerRepositoryProvider);
+
     return MusicPlayerState(
       isPlaying: false,
       isMusicSelected: false,
@@ -36,6 +37,14 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   PlayList getCurrentPlayList() {
     return state.pds.playList;
+  }
+
+  double getCurrentSeconds() {
+    return apr.getCurrentSeconds();
+  }
+
+  double getDurationSeconds() {
+    return apr.getDurationSeconds();
   }
 
   Future<void> play() async {

@@ -17,6 +17,21 @@ class PlayPageViewModel extends _$PlayPageViewModel {
     );
   }
 
+  void seek(double seconds) {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    prov.seek(seconds.toInt());
+  }
+
+  double getCurrentSeconds() {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    return prov.getCurrentSeconds();
+  }
+
+  double getDurationSeconds() {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    return prov.getDurationSeconds();
+  }
+
   void onPageVisibled() {
     ref.invalidateSelf();
   }
