@@ -7,13 +7,15 @@ part 'play_page_view_state.freezed.dart';
 sealed class PlayPageViewState with _$PlayPageViewState {
   const factory PlayPageViewState({
     required Music? currentMusic,
-    required String currentPlayListName
+    required String currentPlayListName,
+    required bool isMusicSelected
   }) = _PlayPageViewState;
 
   factory PlayPageViewState.createEmpty(){
     return PlayPageViewState(
       currentMusic: null,
-      currentPlayListName: ""
+      currentPlayListName: "",
+      isMusicSelected: false
     );
   }
 }

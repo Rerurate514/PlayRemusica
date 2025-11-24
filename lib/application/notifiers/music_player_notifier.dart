@@ -20,6 +20,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     apr = ref.read(audioPlayerRepositoryProvider);
     return MusicPlayerState(
       isPlaying: false,
+      isMusicSelected: false,
       pds: PlayerDomainService(playList: PlayList.createEmpty())
     );
   }
@@ -38,7 +39,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> play() async {
-    state = state.copyWith(isPlaying: true);
+    state = state.copyWith(isPlaying: true, isMusicSelected: true);
     final music = state.pds.getCurrentMusic();
     if(music == null) return;
     await apr.start(music);
