@@ -9,7 +9,7 @@ part 'play_page_view_model.g.dart';
 class PlayPageViewModel extends _$PlayPageViewModel {
   @override
   Future<PlayPageViewState> build() async {
-    final MusicPlayerState musicPlayerState = ref.read(musicPlayerProvider);
+    final MusicPlayerState musicPlayerState = ref.watch(musicPlayerProvider);
     return PlayPageViewState(
       currentMusic: musicPlayerState.pds.getCurrentMusic(),
       currentPlayListName: musicPlayerState.pds.playList.name,

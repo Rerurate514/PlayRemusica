@@ -46,6 +46,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> playAtIndex(int index) async {
+    state = state.copyWith(isPlaying: true, isMusicSelected: true);
     state.pds.setPlayListIndex(index);
     final music = state.pds.getCurrentMusic();
     if(music == null) return;

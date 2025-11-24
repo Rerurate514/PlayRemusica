@@ -23,7 +23,8 @@ class PlayPage extends HookConsumerWidget {
         body: Center(
           child: prov.when(
             data: (state) {
-              if(state.currentMusic == null) return Text("曲を選択してください！");
+              if(!state.isMusicSelected) return buildUnselectedContent();
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,6 +48,12 @@ class PlayPage extends HookConsumerWidget {
           )
         ),
       ),
+    );
+  }
+
+  Widget buildUnselectedContent() {
+    return Center(
+      child: Text("曲を選択してください！"),
     );
   }
 }
