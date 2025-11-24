@@ -14,8 +14,6 @@ class MusicImage extends StatefulWidget {
 class _MusicImageState extends State<MusicImage> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Container(
       margin: const EdgeInsetsDirectional.symmetric(vertical: 8),
       child: Card(
