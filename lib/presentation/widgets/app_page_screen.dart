@@ -13,11 +13,11 @@ class AppPageScreen extends HookWidget {
     final currentPageIndex = useState(0);
     final pageController = usePageController();
 
-    final pages = useMemoized(() => const [
+    final pages = useMemoized(() => [
       HomePage(),
-      HomePage(),
+      Container(),
       PlayPage(),
-      HomePage(),
+      CircularProgressIndicator.adaptive(),
     ]);
 
     final bottomNavItems = useMemoized(() => [
