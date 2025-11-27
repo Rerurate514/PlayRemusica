@@ -8,7 +8,8 @@ sealed class PlayPageViewState with _$PlayPageViewState {
   const factory PlayPageViewState({
     required Music? currentMusic,
     required String currentPlayListName,
-    required bool isMusicSelected
+    required bool isMusicSelected,
+    @Default(0.0) double currentSeconds
   }) = _PlayPageViewState;
 
   factory PlayPageViewState.createEmpty(){

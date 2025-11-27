@@ -10,10 +10,12 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   @override
   Future<PlayPageViewState> build() async {
     final MusicPlayerState musicPlayerState = ref.watch(musicPlayerProvider);
+
     return PlayPageViewState(
       currentMusic: musicPlayerState.pds.getCurrentMusic(),
       currentPlayListName: musicPlayerState.pds.playList.name,
-      isMusicSelected: musicPlayerState.isMusicSelected
+      isMusicSelected: musicPlayerState.isMusicSelected,
+      currentSeconds: musicPlayerState.currentSeconds
     );
   }
 
@@ -23,8 +25,7 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   }
 
   double getCurrentSeconds() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
-    return prov.getCurrentSeconds();
+    return state.value?.currentSeconds ?? 0.0;
   }
 
   double getDurationSeconds() {

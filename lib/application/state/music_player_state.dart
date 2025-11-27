@@ -8,6 +8,7 @@ sealed class MusicPlayerState with _$MusicPlayerState {
   const factory MusicPlayerState({
     required bool isPlaying,
     required bool isMusicSelected,
-    required PlayerDomainService pds
+    required PlayerDomainService pds,
+    @Default(0.0) double currentSeconds
   }) = _MusicPlayerState;
 }

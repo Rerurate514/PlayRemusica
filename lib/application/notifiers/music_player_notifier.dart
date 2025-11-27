@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/application/state/music_player_state.dart';
 import 'package:playremusica/domain/entities/music.dart';
@@ -7,6 +9,7 @@ import 'package:playremusica/domain/services/player_domain_service.dart';
 import 'package:playremusica/domain/values/music_mode.dart';
 import 'package:playremusica/domain/values/transition.dart';
 import 'package:playremusica/infrastructure/repositories/audio_player_repository.dart';
+import 'package:playremusica/infrastructure/repositories/providers/current_seconds_stream.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'music_player_notifier.g.dart';
@@ -18,6 +21,12 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   @override
   MusicPlayerState build() {
     apr = ref.read(audioPlayerRepositoryProvider);
+
+    ref.listen(currentSecondsStreamProvider, (previous, next) {
+      next.whenData((seconds) {
+        state = state.copyWith(currentSeconds: seconds);
+      });
+    });
 
     return MusicPlayerState(
       isPlaying: false,
