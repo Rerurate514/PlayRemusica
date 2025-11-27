@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:playremusica/application/notifiers/music_player_notifier.dart';
+import 'package:playremusica/features/player/presentation/viewmodel/play_page_view_model.dart';
 
 class MusicSlider extends HookConsumerWidget {
   const MusicSlider({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final prov = ref.watch(musicPlayerProvider);
-    final musicCurrent = useState(0.0);
+    final state = ref.watch(playPageViewModelProvider);
+    final prov = ref.read(playPageViewModelProvider.notifier);
+
+    final current = state.value?.currentSeconds ?? 0.0;
+    final duration = prov.getDurationSeconds();
 
     return Slider(
-      value: musicCurrent.value, 
+      min: 0.0,
+      max: duration,
+      value: current,
       onChanged: (currentValue) {
-        musicCurrent.value = currentValue;
+        prov.seek(currentValue);
       }
     );
   }
