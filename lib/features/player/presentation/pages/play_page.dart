@@ -10,7 +10,21 @@ class PlayPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prov = ref.watch(playPageViewModelProvider);
+    final provValue = ref.watch(
+      playPageViewModelProvider.select((asyncValue) {
+        final state = asyncValue.value;
+        if(state == null) return null;
+
+        return (
+          state.currentMusic,
+          state.currentPlayListName,
+          state.isMusicSelected,
+        );
+      })
+    );
     final viewmodel = ref.read(playPageViewModelProvider.notifier);
+
+    if(provValue == null) return CircularProgressIndicator();
 
     return VisibilityDetector(
       key: Key('play-page'),
@@ -23,20 +37,23 @@ class PlayPage extends HookConsumerWidget {
         body: Center(
           child: prov.when(
             data: (state) {
-              if(!state.isMusicSelected) return buildUnselectedContent();
+              final currentMusic = provValue.$1;
+              final currentPlayListName = provValue.$2;
+              final isMusicSelected = provValue.$3;
+              if(!isMusicSelected) return buildUnselectedContent();
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    state.currentMusic!.name,
+                    currentMusic!.name,
                     style: TextStyle(
                       fontSize: 32
                     ),
                   ),
                   SizedBox(height: 32,),
-                  MusicImage(image: state.currentMusic!.musicSettings.picture.imageProvider),
-                  Text(state.currentPlayListName),
+                  MusicImage(image: currentMusic.musicSettings.picture.imageProvider),
+                  Text(currentPlayListName),
                   SizedBox(height: 32,),
                   MusicSlider(),
                   
