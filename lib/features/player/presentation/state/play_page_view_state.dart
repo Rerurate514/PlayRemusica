@@ -9,6 +9,7 @@ sealed class PlayPageViewState with _$PlayPageViewState {
     required Music? currentMusic,
     required String currentPlayListName,
     required bool isMusicSelected,
+    required bool isPlaying,
     @Default(0.0) double currentSeconds
   }) = _PlayPageViewState;
 
@@ -16,7 +17,8 @@ sealed class PlayPageViewState with _$PlayPageViewState {
     return PlayPageViewState(
       currentMusic: null,
       currentPlayListName: "",
-      isMusicSelected: false
+      isMusicSelected: false,
+      isPlaying: false
     );
   }
 }
