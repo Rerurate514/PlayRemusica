@@ -1,5 +1,5 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/application/notifiers/music_player_notifier.dart';
-import 'package:playremusica/application/state/music_player_state.dart';
 import 'package:playremusica/features/player/presentation/state/play_page_view_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,15 +8,33 @@ part 'play_page_view_model.g.dart';
 @riverpod
 class PlayPageViewModel extends _$PlayPageViewModel {
   @override
-  Future<PlayPageViewState> build() async {
-    final MusicPlayerState musicPlayerState = ref.watch(musicPlayerProvider);
+  PlayPageViewState build() {
+    final musicPlayerStaticInfo = ref.watch(musicPlayerProvider.select((state) => (
+        state.pds.getCurrentMusic(),
+        state.pds.playList.name,
+        state.isMusicSelected,
+    )));
+    
+    final isPlaying = ref.watch(musicPlayerProvider.select((state) => state.isPlaying));
+    final currentSeconds = ref.watch(musicPlayerProvider.select((state) => state.currentSeconds));
 
     return PlayPageViewState(
-      currentMusic: musicPlayerState.pds.getCurrentMusic(),
-      currentPlayListName: musicPlayerState.pds.playList.name,
-      isMusicSelected: musicPlayerState.isMusicSelected,
-      currentSeconds: musicPlayerState.currentSeconds
+      currentMusic: musicPlayerStaticInfo.$1,
+      currentPlayListName: musicPlayerStaticInfo.$2,
+      isMusicSelected: musicPlayerStaticInfo.$3,
+      isPlaying: isPlaying,
+      currentSeconds: currentSeconds
     );
+  }
+
+  void pause() {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    prov.pause();
+  }
+
+  void resume() {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    prov.resume();
   }
 
   void seek(double seconds) {

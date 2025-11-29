@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/features/player/presentation/viewmodel/play_page_view_model.dart';
 import 'package:playremusica/features/player/presentation/widgets/music_image.dart';
 import 'package:playremusica/features/player/presentation/widgets/music_slider.dart';
+import 'package:playremusica/features/player/presentation/widgets/play_button.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class PlayPage extends HookConsumerWidget {
@@ -56,7 +57,13 @@ class PlayPage extends HookConsumerWidget {
                   Text(currentPlayListName),
                   SizedBox(height: 32,),
                   MusicSlider(),
-                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      PlayButton(),
+                      
+                    ],
+                  )
                 ],
               );
             }, 
