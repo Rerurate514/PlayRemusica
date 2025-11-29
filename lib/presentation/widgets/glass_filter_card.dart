@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class GlassFilterCard extends StatelessWidget {
   final Widget child;
   final Function onTap;
+  final double radius;
   
   const GlassFilterCard({
     super.key,
     required this.child,
-    this.onTap = _voidCallback
+    this.onTap = _voidCallback,
+    this.radius = 16.0
   });
 
   static void _voidCallback() {}
@@ -17,7 +19,7 @@ class GlassFilterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(radius),
       child: Material(
         color: Colors.transparent,
         child: BackdropFilter(
