@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/features/player/presentation/viewmodel/play_page_view_model.dart';
+import 'package:playremusica/features/player/presentation/widgets/move_next_button.dart';
+import 'package:playremusica/features/player/presentation/widgets/move_previous_button.dart';
 import 'package:playremusica/features/player/presentation/widgets/music_image.dart';
 import 'package:playremusica/features/player/presentation/widgets/music_slider.dart';
 import 'package:playremusica/features/player/presentation/widgets/play_button.dart';
@@ -60,8 +62,9 @@ class PlayPage extends HookConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      MovePreviousButton(),
                       PlayButton(),
-                      
+                      MoveNextButton()
                     ],
                   )
                 ],
