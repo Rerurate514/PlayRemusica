@@ -10,7 +10,6 @@ class PlayButton extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(playPageViewModelProvider);
     final prov = ref.watch(playPageViewModelProvider.notifier);
     final isPlaying = ref.watch(playPageViewModelProvider.select(
       (state) => state.value?.isPlaying ?? false,
