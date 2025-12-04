@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/application/notifiers/music_player_notifier.dart';
-import 'package:playremusica/domain/values/music_mode.dart';
 import 'package:playremusica/features/player/presentation/state/play_page_view_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,13 +17,15 @@ class PlayPageViewModel extends _$PlayPageViewModel {
     
     final isPlaying = ref.watch(musicPlayerProvider.select((state) => state.isPlaying));
     final currentSeconds = ref.watch(musicPlayerProvider.select((state) => state.currentSeconds));
+    final currentMusicMode = ref.watch(musicPlayerProvider.select((state) => state.currentMusicMode));
 
     return PlayPageViewState(
       currentMusic: musicPlayerStaticInfo.$1,
       currentPlayListName: musicPlayerStaticInfo.$2,
       isMusicSelected: musicPlayerStaticInfo.$3,
       isPlaying: isPlaying,
-      currentSeconds: currentSeconds
+      currentSeconds: currentSeconds,
+      currentMusicMode: currentMusicMode
     );
   }
 
@@ -50,11 +51,6 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   double getDurationSeconds() {
     final prov = ref.watch(musicPlayerProvider.notifier);
     return prov.getDurationSeconds();
-  }
-
-  MusicMode getCurrentMusicMode() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
-    return prov.getCurrentMusicMode();
   }
 
   void moveNext() {
