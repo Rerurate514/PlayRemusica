@@ -11,7 +11,7 @@ class PlayButton extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final prov = ref.watch(playPageViewModelProvider.notifier);
     final isPlaying = ref.watch(playPageViewModelProvider.select(
-      (state) => state.value?.isPlaying ?? false,
+      (state) => state.isPlaying,
     ));
     
     return InkCard(

@@ -14,7 +14,7 @@ class MusicSlider extends HookConsumerWidget {
     final isDragging = useState(false);
     final userDragValue = useState(0.0);
 
-    final current = state.value?.currentSeconds ?? 0.0;
+    final current = state.currentSeconds;
     final duration = prov.getDurationSeconds();
 
     final displayValue = isDragging.value ? userDragValue.value : current;
