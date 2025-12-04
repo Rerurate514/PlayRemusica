@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:playremusica/domain/services/player_domain_service.dart';
+import 'package:playremusica/domain/values/music_mode.dart';
 
 part 'music_player_state.freezed.dart';
 
@@ -9,6 +10,7 @@ sealed class MusicPlayerState with _$MusicPlayerState {
     required bool isPlaying,
     required bool isMusicSelected,
     required PlayerDomainService pds,
-    @Default(0.0) double currentSeconds
+    @Default(0.0) double currentSeconds,
+    @Default(Normal()) MusicMode currentMusicMode
   }) = _MusicPlayerState;
 }

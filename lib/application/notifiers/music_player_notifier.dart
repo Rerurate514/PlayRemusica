@@ -115,6 +115,8 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
       case Loop(): apr.setReleaseMode(ReleaseMode.release);
       case Shuffle(): apr.setReleaseMode(ReleaseMode.release);
     }
+
+    state = state.copyWith(currentMusicMode: musicMode);
   }
 
   Future<void> setVolume(double volume) async {
