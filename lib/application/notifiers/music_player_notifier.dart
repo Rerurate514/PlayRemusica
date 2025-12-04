@@ -109,14 +109,22 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
   }
 
   Future<void> toggleMusicMode() async {
-    final musicMode = state.pds.musicMode;
-    switch(musicMode) {
-      case Normal(): apr.setReleaseMode(ReleaseMode.loop);
-      case Loop(): apr.setReleaseMode(ReleaseMode.release);
-      case Shuffle(): apr.setReleaseMode(ReleaseMode.release);
+    switch(state.pds.musicMode) {
+      case Normal(): {
+        apr.setReleaseMode(ReleaseMode.loop);
+        state.pds.setMusicMode(Loop());
+      }
+      case Loop(): {
+        apr.setReleaseMode(ReleaseMode.release);
+        state.pds.setMusicMode(Shuffle());
+      }
+      case Shuffle(): {
+        apr.setReleaseMode(ReleaseMode.release);
+        state.pds.setMusicMode(Normal());
+      }
     }
 
-    state = state.copyWith(currentMusicMode: musicMode);
+    state = state.copyWith(currentMusicMode: state.pds.musicMode);
   }
 
   Future<void> setVolume(double volume) async {
