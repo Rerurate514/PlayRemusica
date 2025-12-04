@@ -48,10 +48,15 @@ class PlayPage extends HookConsumerWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    currentMusic!.name,
-                    style: TextStyle(
-                      fontSize: 32
+                  SizedBox(
+                    height: 32,
+                      child: FittedBox(
+                      child: Text(
+                        currentMusic!.name,
+                        style: TextStyle(
+                          fontSize: 32
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 32,),
