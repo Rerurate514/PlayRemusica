@@ -6,6 +6,8 @@ import 'package:playremusica/features/player/presentation/widgets/move_previous_
 import 'package:playremusica/features/player/presentation/widgets/music_image.dart';
 import 'package:playremusica/features/player/presentation/widgets/music_slider.dart';
 import 'package:playremusica/features/player/presentation/widgets/play_button.dart';
+import 'package:playremusica/features/player/presentation/widgets/toggle_music_mode_button.dart';
+import 'package:playremusica/features/player/presentation/widgets/volume_button.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class PlayPage extends HookConsumerWidget {
@@ -68,7 +70,9 @@ class PlayPage extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MovePreviousButton(),
+                      ToggleMusicModeButton(),
                       PlayButton(),
+                      VolumeButton(),
                       MoveNextButton()
                     ],
                   )
