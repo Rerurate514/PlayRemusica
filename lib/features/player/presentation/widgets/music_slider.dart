@@ -23,8 +23,8 @@ class MusicSlider extends HookConsumerWidget {
 
     useEffect(() {
       if (isDragging.value &&
-          current != Time.createEmpty() &&
-          current == userDragValue.value) {
+          current.rawSeconds != 0.0 &&
+          current.rawSeconds.toInt() == userDragValue.value.rawSeconds.toInt()) {
         isDragging.value = false;
       }
       return null;
