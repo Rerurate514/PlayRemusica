@@ -30,17 +30,17 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   }
 
   void pause() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.pause();
   }
 
   void resume() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.resume();
   }
 
   void seek(double seconds) {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.seek(seconds.toInt());
   }
 
@@ -49,32 +49,32 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   }
 
   double getDurationSeconds() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     return prov.getDurationSeconds();
   }
 
   void moveNext() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.moveNext();
   }
 
   void movePrevious() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.movePrevious();
   }
 
   void moveRandom() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.moveRandom();
   }
 
   void toggleMusicMode() {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.toggleMusicMode();
   }
 
   void setVolume(double volume) {
-    final prov = ref.watch(musicPlayerProvider.notifier);
+    final prov = ref.read(musicPlayerProvider.notifier);
     prov.setVolume(volume);
   }
 
