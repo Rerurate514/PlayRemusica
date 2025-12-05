@@ -25,7 +25,7 @@ class PlayPageViewModel extends _$PlayPageViewModel {
       isMusicSelected: musicPlayerStaticInfo.$3,
       isPlaying: isPlaying,
       currentSeconds: currentSeconds,
-      currentMusicMode: currentMusicMode
+      currentMusicMode: currentMusicMode,
     );
   }
 
@@ -71,6 +71,11 @@ class PlayPageViewModel extends _$PlayPageViewModel {
   void toggleMusicMode() {
     final prov = ref.watch(musicPlayerProvider.notifier);
     prov.toggleMusicMode();
+  }
+
+  void setVolume(double volume) {
+    final prov = ref.watch(musicPlayerProvider.notifier);
+    prov.setVolume(volume);
   }
 
   void onPageVisibled() {
