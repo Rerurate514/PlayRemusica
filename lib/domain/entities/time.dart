@@ -25,13 +25,15 @@ sealed class Time with _$Time {
     
     final int sec = remainingSeconds.toInt();
     final String secFormatted = sec.toString().padLeft(2, '0');
+    final String minFormatted = m.toString().padLeft(2, '0');
+    final String hourFormatted = h.toString().padLeft(2, '0');
     final String sDisplay = secFormatted;
 
     if (h > 0) {
-      return "$h:$m:$sDisplay";
+      return "$hourFormatted:$minFormatted:$sDisplay";
     }
     else if (m > 0) {
-      return "$m:$sDisplay";
+      return "$minFormatted:$sDisplay";
     }
     else {
       return "00:$sDisplay";

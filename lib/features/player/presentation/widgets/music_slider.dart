@@ -23,7 +23,7 @@ class MusicSlider extends HookConsumerWidget {
 
     useEffect(() {
       if (isDragging.value &&
-          current != 0.0 &&
+          current != Time.createEmpty() &&
           current == userDragValue.value) {
         isDragging.value = false;
       }
@@ -34,7 +34,7 @@ class MusicSlider extends HookConsumerWidget {
       data: SliderTheme.of(context).copyWith(
         thumbShape: CustomSliderShape(
           thumbRadius: 15.0,
-          thumbWidth: 40.0,
+          thumbWidth: 60.0,
           label: displayValue.toString()
         ),
       ),
