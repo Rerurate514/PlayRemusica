@@ -6,7 +6,7 @@ part 'music_settings.freezed.dart';
 @freezed
 sealed class MusicSettings with _$MusicSettings {
   const factory MusicSettings({
-    @Default(40) int volume,
+    @Default(0.4) double volume,
     required String lyrics,
     required PictureImage picture,
   }) = _MusicSettings;
