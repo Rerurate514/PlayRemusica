@@ -61,11 +61,11 @@ class VolumeController extends HookConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(86),
             child: SizedBox(
-              height: 270,
+              height: 300,
               width: 100,
               child: GlassFilterCard(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32,),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   child: Column(
                     children: [
                       buildSlider(),
