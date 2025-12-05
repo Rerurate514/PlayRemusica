@@ -8,6 +8,7 @@ import 'package:playremusica/features/player/presentation/widgets/music_slider.d
 import 'package:playremusica/features/player/presentation/widgets/play_button.dart';
 import 'package:playremusica/features/player/presentation/widgets/toggle_music_mode_button.dart';
 import 'package:playremusica/features/player/presentation/widgets/volume_button.dart';
+import 'package:playremusica/features/player/presentation/widgets/volume_switcher.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class PlayPage extends HookConsumerWidget {
@@ -39,35 +40,41 @@ class PlayPage extends HookConsumerWidget {
       },
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: AlignmentGeometry.center,
             children: [
-              SizedBox(
-                height: 32,
-                  child: FittedBox(
-                  child: Text(
-                    currentMusic!.name,
-                    style: TextStyle(
-                      fontSize: 32
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 32,),
-              MusicImage(image: currentMusic.musicSettings.picture.imageProvider),
-              Text(currentPlayListName),
-              SizedBox(height: 32,),
-              MusicSlider(),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MovePreviousButton(),
-                  ToggleMusicModeButton(),
-                  PlayButton(),
-                  VolumeButton(),
-                  MoveNextButton()
+                  SizedBox(
+                    height: 32,
+                      child: FittedBox(
+                      child: Text(
+                        currentMusic!.name,
+                        style: TextStyle(
+                          fontSize: 32
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 32,),
+                  MusicImage(image: currentMusic.musicSettings.picture.imageProvider),
+                  Text(currentPlayListName),
+                  SizedBox(height: 32,),
+                  MusicSlider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MovePreviousButton(),
+                      ToggleMusicModeButton(),
+                      PlayButton(),
+                      VolumeButton(),
+                      MoveNextButton()
+                    ],
+                  )
                 ],
-              )
+              ),
+              buildVolumeSwitcher()
             ],
           )
         ),
@@ -78,6 +85,20 @@ class PlayPage extends HookConsumerWidget {
   Widget buildUnselectedContent() {
     return Center(
       child: Text("曲を選択してください！"),
+    );
+  }
+
+  // Widget buildSwitchers() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       VolumeSwitcher()
+  //     ],
+  //   );
+  // }
+  Widget buildVolumeSwitcher() {
+    return Positioned.fill(
+      child: VolumeSwitcher(), 
     );
   }
 }
