@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:playremusica/domain/entities/time.dart';
 import 'package:playremusica/features/player/presentation/viewmodel/play_page_view_model.dart';
 import 'package:playremusica/presentation/shapes/custom_slider_shape.dart';
 
@@ -13,7 +14,7 @@ class MusicSlider extends HookConsumerWidget {
     final prov = ref.read(playPageViewModelProvider.notifier);
 
     final isDragging = useState(false);
-    final userDragValue = useState(0.0);
+    final userDragValue = useState(Time.createEmpty());
 
     final current = state.currentSeconds;
     final duration = prov.getDurationSeconds();
@@ -34,20 +35,20 @@ class MusicSlider extends HookConsumerWidget {
         thumbShape: CustomSliderShape(
           thumbRadius: 15.0,
           thumbWidth: 40.0,
-          label: displayValue.toInt().toString(),
+          label: displayValue.toString()
         ),
       ),
       child: Slider(
         min: 0.0,
-        max: duration,
-        value: displayValue,
+        max: duration.rawSeconds,
+        value: displayValue.rawSeconds,
         onChanged: (value) {
-          userDragValue.value = value;
+          userDragValue.value = Time(rawSeconds: value);
           isDragging.value = true;
         },
         onChangeEnd: (value) {
           prov.seek(value);
-          userDragValue.value = value;
+          userDragValue.value = Time(rawSeconds: value);
         },
       ),
     );

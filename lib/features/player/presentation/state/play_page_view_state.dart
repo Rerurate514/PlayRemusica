@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:playremusica/domain/entities/music.dart';
+import 'package:playremusica/domain/entities/time.dart';
 import 'package:playremusica/domain/values/music_mode.dart';
 
 part 'play_page_view_state.freezed.dart';
@@ -11,7 +12,7 @@ sealed class PlayPageViewState with _$PlayPageViewState {
     required String currentPlayListName,
     required bool isMusicSelected,
     required bool isPlaying,
-    @Default(0.0) double currentSeconds,
+    @Default(Time(rawSeconds: 0.0)) Time currentSeconds,
     @Default(Normal()) MusicMode currentMusicMode
   }) = _PlayPageViewState;
 

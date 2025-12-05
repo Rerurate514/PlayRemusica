@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/application/state/music_player_state.dart';
 import 'package:playremusica/domain/entities/music.dart';
 import 'package:playremusica/domain/entities/playlist.dart';
+import 'package:playremusica/domain/entities/time.dart';
 import 'package:playremusica/domain/repositories/audio_player_repository_interface.dart';
 import 'package:playremusica/domain/services/player_domain_service.dart';
 import 'package:playremusica/domain/values/music_mode.dart';
@@ -48,12 +49,12 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     return state.pds.playList;
   }
 
-  double getCurrentSeconds() {
-    return apr.getCurrentSeconds();
+  Time getCurrentSeconds() {
+    return Time(rawSeconds: apr.getCurrentSeconds());
   }
 
-  double getDurationSeconds() {
-    return apr.getDurationSeconds();
+  Time getDurationSeconds() {
+    return Time(rawSeconds: apr.getDurationSeconds());
   }
 
   MusicMode getCurrentMusicMode() {

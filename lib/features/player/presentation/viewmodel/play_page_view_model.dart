@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:playremusica/application/notifiers/music_player_notifier.dart';
+import 'package:playremusica/domain/entities/time.dart';
 import 'package:playremusica/features/player/presentation/state/play_page_view_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,7 +25,7 @@ class PlayPageViewModel extends _$PlayPageViewModel {
       currentPlayListName: musicPlayerStaticInfo.$2,
       isMusicSelected: musicPlayerStaticInfo.$3,
       isPlaying: isPlaying,
-      currentSeconds: currentSeconds,
+      currentSeconds: Time(rawSeconds: currentSeconds),
       currentMusicMode: currentMusicMode,
     );
   }
@@ -44,11 +45,11 @@ class PlayPageViewModel extends _$PlayPageViewModel {
     prov.seek(seconds.toInt());
   }
 
-  double getCurrentSeconds() {
+  Time getCurrentSeconds() {
     return state.currentSeconds;
   }
 
-  double getDurationSeconds() {
+  Time getDurationSeconds() {
     final prov = ref.read(musicPlayerProvider.notifier);
     return prov.getDurationSeconds();
   }
