@@ -42,6 +42,11 @@ class AudioPlayerRepositoryImpl implements IAudioPlayerRepository {
   }
 
   @override
+  double getVolume() {
+    return audioPlayer.volume;
+  }
+
+  @override
   Future<void> initCompletedListener(Function() onMusicCompleted) async {
     audioPlayer.onPlayerComplete.listen((event) {
       onMusicCompleted();

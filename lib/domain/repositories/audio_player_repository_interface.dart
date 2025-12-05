@@ -9,6 +9,7 @@ abstract class IAudioPlayerRepository {
   Future<void> setVolume(double volume);
   double getCurrentSeconds();
   double getDurationSeconds();
+  double getVolume();
   Future<void> setReleaseMode(ReleaseMode releaseMode);
   Future<void> initCompletedListener(Function() onMusicCompleted);
 }
