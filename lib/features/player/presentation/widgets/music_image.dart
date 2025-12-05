@@ -28,7 +28,17 @@ class _MusicImageState extends State<MusicImage> {
             backgroundColor: Colors.transparent,
             backgroundImage: widget.image,
             child: widget.image == null
-            ? const Icon(Icons.image)
+            ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.image,
+                  size: 90,
+                ),
+                SizedBox(height: 16,),
+                Text("曲のジャケットを設定してみよう！")
+              ],
+            )
             : null,
           ),
         ),
