@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playremusica/core/settings/my_colors.dart';
 
 final appThemeData = ThemeData.dark().copyWith(
     textTheme: ThemeData.dark().textTheme.copyWith(),
@@ -12,5 +11,13 @@ final appThemeData = ThemeData.dark().copyWith(
       // unselectedLabelStyle: TextStyle(
       //   color: MyColors.secondaryBlue,
       // ),
-    )
+    ),
+    sliderTheme: SliderThemeData(
+      activeTrackColor: Colors.purpleAccent.shade100,
+      inactiveTrackColor: Colors.white12, 
+      thumbColor: Colors.white, 
+      overlayColor: Colors.purple.withOpacity(0.2),  // ignore: deprecated_member_use
+      trackHeight: 3.0, 
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0), 
+    ),
   );
