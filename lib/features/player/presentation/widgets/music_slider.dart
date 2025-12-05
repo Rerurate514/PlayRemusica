@@ -30,26 +30,29 @@ class MusicSlider extends HookConsumerWidget {
       return null;
     }, [current, isDragging.value]);
 
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        thumbShape: CustomSliderShape(
-          thumbRadius: 15.0,
-          thumbWidth: 60.0,
-          label: displayValue.toString()
+    return SizedBox(
+      width: 380,
+      child: SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          thumbShape: CustomSliderShape(
+            thumbRadius: 15.0,
+            thumbWidth: 60.0,
+            label: displayValue.toString()
+          ),
         ),
-      ),
-      child: Slider(
-        min: 0.0,
-        max: duration.rawSeconds,
-        value: displayValue.rawSeconds,
-        onChanged: (value) {
-          userDragValue.value = Time(rawSeconds: value);
-          isDragging.value = true;
-        },
-        onChangeEnd: (value) {
-          prov.seek(value);
-          userDragValue.value = Time(rawSeconds: value);
-        },
+        child: Slider(
+          min: 0.0,
+          max: duration.rawSeconds,
+          value: displayValue.rawSeconds,
+          onChanged: (value) {
+            userDragValue.value = Time(rawSeconds: value);
+            isDragging.value = true;
+          },
+          onChangeEnd: (value) {
+            prov.seek(value);
+            userDragValue.value = Time(rawSeconds: value);
+          },
+        ),
       ),
     );
   }
