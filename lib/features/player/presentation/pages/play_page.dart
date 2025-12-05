@@ -88,14 +88,6 @@ class PlayPage extends HookConsumerWidget {
     );
   }
 
-  // Widget buildSwitchers() {
-  //   return Column(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     children: [
-  //       VolumeSwitcher()
-  //     ],
-  //   );
-  // }
   Widget buildVolumeSwitcher() {
     return Positioned.fill(
       child: VolumeSwitcher(), 
