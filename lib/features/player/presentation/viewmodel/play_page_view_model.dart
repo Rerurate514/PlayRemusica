@@ -53,6 +53,11 @@ class PlayPageViewModel extends _$PlayPageViewModel {
     return prov.getDurationSeconds();
   }
 
+  double getVolume() {
+    final prov = ref.read(musicPlayerProvider.notifier);
+    return prov.getVolume();
+  }
+
   void moveNext() {
     final prov = ref.read(musicPlayerProvider.notifier);
     prov.moveNext();

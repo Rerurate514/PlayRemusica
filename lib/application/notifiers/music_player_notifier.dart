@@ -60,6 +60,10 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     return state.pds.musicMode;
   }
 
+  double getVolume() {
+    return apr.getVolume();
+  }
+
   Future<void> play() async {
     state = state.copyWith(isPlaying: true, isMusicSelected: true);
     final music = state.pds.getCurrentMusic();
