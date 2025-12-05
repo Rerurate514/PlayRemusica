@@ -69,7 +69,7 @@ class VolumeController extends HookConsumerWidget {
                   child: Column(
                     children: [
                       buildSlider(),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),

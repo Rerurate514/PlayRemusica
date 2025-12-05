@@ -57,11 +57,12 @@ class PlayPage extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 32,),
+                  const SizedBox(height: 32,),
                   MusicImage(image: currentMusic.musicSettings.picture.imageProvider),
                   Text(currentPlayListName),
-                  SizedBox(height: 32,),
+                  const SizedBox(height: 32,),
                   MusicSlider(),
+                  const SizedBox(height: 32,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
