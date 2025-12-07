@@ -14,4 +14,8 @@ sealed class PlayListId with _$PlayListId {
     final uniqueId = uuid.v5(Namespace.url.value, inputName);
     return PlayListId(value: uniqueId);
   }
+
+  factory PlayListId.createMainListId() {
+    return PlayListId(value: "in-main-list");
+  }
 }
