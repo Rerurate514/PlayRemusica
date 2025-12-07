@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/application/state/music_player_state.dart';
 import 'package:playremusica/domain/entities/music.dart';
 import 'package:playremusica/domain/entities/playlist.dart';
+import 'package:playremusica/domain/entities/playlist_id.dart';
 import 'package:playremusica/domain/entities/time.dart';
 import 'package:playremusica/domain/repositories/audio_player_repository_interface.dart';
 import 'package:playremusica/domain/services/player_domain_service.dart';
@@ -38,6 +39,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
 
   Future<void> loadInitialData(PlayList playList) async {
     apr.initCompletedListener(_handlePlaybackCompletion);
+    if(state.pds.playList.id == PlayListId.createMainListId()) return;
     state = state.copyWith(pds: PlayerDomainService(playList: playList));
   }
 
@@ -129,6 +131,7 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
       }
     }
 
+    apr.initCompletedListener(_handlePlaybackCompletion);
     state = state.copyWith(currentMusicMode: state.pds.musicMode);
   }
 
@@ -136,7 +139,12 @@ class MusicPlayerNotifier extends _$MusicPlayerNotifier {
     await apr.setVolume(volume);
   }
 
-  void _handlePlaybackCompletion() {
-    
+  Future<void> _handlePlaybackCompletion() async {
+    if(state.pds.musicMode == Loop()) return;
+
+    final nextMusic = state.pds.handleMusicCompletion();
+    state = state.copyWith(isPlaying: true, isMusicSelected: true);
+
+    await apr.start(nextMusic);
   }
 }

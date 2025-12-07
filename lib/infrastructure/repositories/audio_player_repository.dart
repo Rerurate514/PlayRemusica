@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:playremusica/domain/entities/music.dart';
 import 'package:playremusica/domain/repositories/audio_player_repository_interface.dart';
@@ -21,6 +23,8 @@ class AudioPlayerRepositoryImpl implements IAudioPlayerRepository {
   final AudioPlayer audioPlayer;
   final CurrentListenerResistry clr;
   final DurationListenerResistry dlr;
+
+  StreamSubscription<void>? _completeSubscription;
 
   AudioPlayerRepositoryImpl({
     required this.audioPlayer,
@@ -48,7 +52,9 @@ class AudioPlayerRepositoryImpl implements IAudioPlayerRepository {
 
   @override
   Future<void> initCompletedListener(Function() onMusicCompleted) async {
-    audioPlayer.onPlayerComplete.listen((event) {
+    _completeSubscription?.cancel();
+
+    _completeSubscription = audioPlayer.onPlayerComplete.listen((event) {
       onMusicCompleted();
     });
   }
